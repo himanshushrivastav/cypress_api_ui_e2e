@@ -1,0 +1,16 @@
+{
+  "name": "task_convosights",
+  "version": "1.0.0",
+  "description": "Include both UI and API test case",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run"
+  },
+  "author": "Himanshu shrivastav",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^8.6.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-xpath": "^1.6.2"
+  }
+}
