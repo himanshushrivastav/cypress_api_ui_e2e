@@ -1,4 +1,4 @@
-const email = "himanshu1123@1101two.in";
+const email = "himanshu1123@101two.in";
 var id;
 
 describe("API call Validation task", () => {
@@ -113,7 +113,7 @@ describe("API call Validation task", () => {
       expect(res2.body).to.not.have.property("email", undefined);
     });
   });
-  it.only("5. Delete Contact", () => {
+  it("5. Delete Contact", () => {
     var token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTc2OGI4Y2NlZDBlZTAwMTVhNjA3MmEiLCJpYXQiOjE2MzUxNTg5MjR9.v12t2Ox9RD6q94L4_pxKc9ev4PzCL57a9_k6STdsC4U";
     cy.request({

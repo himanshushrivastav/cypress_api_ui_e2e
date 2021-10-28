@@ -1,18 +1,6 @@
 import "cypress-file-upload";
 import { functions } from "lodash";
 
-Cypress.Commands.add("verifySearchBoxAction", () => {
-  cy.get("#search_query_top")
-    .type("ab")
-    .get(".ac_results>ul>li")
-    .should("not.exist");
-
-  cy.get("#search_query_top")
-    .type("ab")
-    .get(".ac_results>ul>li")
-    .should("have.length.at.least", 1);
-});
-
 Cypress.Commands.add("addCartItem", () => {
   for (let i = 0; i < 5; i++) {
     cy.xpath('//span[text()="Add to cart"]').eq(i).click();
@@ -23,8 +11,6 @@ Cypress.Commands.add("addCartItem", () => {
 
 Cypress.Commands.add("travelToCart", () => {
   cy.xpath('//a[@title="View my shopping cart"]').click();
-  // .xpath('//*[contains(text(), "Check out")]')
-  // .click();
 
   for (let i = 0; i < 5; i++) {
     let a;
@@ -98,7 +84,7 @@ Cypress.Commands.add("verifySearchItems", () => {
 
   cy.xpath(
     '//ul[@class="product_list grid row"]//a[@class="product-name"]'
-  ).each(($li)=>{
+  ).each(($li) => {
     expect($li.text()).to.have.string("Dress");
-  })
+  });
 });

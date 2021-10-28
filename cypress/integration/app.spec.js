@@ -21,7 +21,7 @@ describe("Verify Automation practice", () => {
     cy.checkLargeCheckBox();
   });
 
-  it.only('verify search func', () => {
+  it('verify search func', () => {
     cy.verifySearchItems();
   });
 });
