@@ -1,3 +1,4 @@
+// test file
 describe("Verify Automation practice", () => {
   beforeEach(() => {
     cy.visit("http://automationpractice.com/index.php");

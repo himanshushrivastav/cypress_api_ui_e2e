@@ -1,4 +1,4 @@
-module.exports.locator = {
+let locator = {
   addToCartButton: '//span[text()="Add to cart"]',
   crossButton: ".cross",
   viewCartButton: '//a[@title="View my shopping cart"]',
@@ -18,3 +18,5 @@ module.exports.locator = {
   searchedProductName:
     '//ul[@class="product_list grid row"]//a[@class="product-name"]',
 };
+
+module.exports = locator
