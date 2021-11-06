@@ -1,25 +1,26 @@
+// Author : Himanshu Shrivastav
 import "cypress-file-upload";
-import { functions } from "lodash";
+import locator from "./locators";
 
 Cypress.Commands.add("addCartItem", () => {
   for (let i = 0; i < 5; i++) {
-    cy.xpath('//span[text()="Add to cart"]').eq(i).click();
-    cy.get(".cross").eq(0).click();
-    cy.wait(1000);
+    cy.xpath(locator.addToCartButton).eq(i).click();
+    cy.get(locator.crossButton).eq(0).click();
+    cy.wait(500);
   }
 });
 
 Cypress.Commands.add("travelToCart", () => {
-  cy.xpath('//a[@title="View my shopping cart"]').click();
+  cy.xpath(locator.viewCartButton).click();
 
   for (let i = 0; i < 5; i++) {
     let a;
-    cy.xpath('//p[@class="product-name"]/a')
+    cy.xpath(locator.productName)
       .eq(i)
       .then(function ($elem) {
         a = $elem.text();
       });
-    cy.xpath('//*[@data-title="Unit price"]/span[@class="price"]')
+    cy.xpath(locator.unitPrice)
       .eq(i)
       .then(function ($elem) {
         cy.log(a + "=>" + $elem.text());
@@ -30,27 +31,25 @@ Cypress.Commands.add("travelToCart", () => {
   let mrp;
   let product;
 
-  cy.xpath('//*[@class="price special-price"]').then(($ele) => {
+  cy.xpath(locator.specialPrice).then(($ele) => {
     if ($ele) {
-      cy.xpath(
-        '//*[@class="old-price"]/../../..//p[@class="product-name"]/a'
-      ).then((value) => {
+      cy.xpath(locator.discountProductName).then((value) => {
         product = value.text();
       });
     }
   });
-  cy.xpath('//*[@class="price special-price"]')
+  cy.xpath(locator.specialPriceDiscount)
     .should("have.length", 1)
     .then(function ($el) {
       specialPrice = $el.text();
     });
-  cy.xpath('//*[@class="price-percent-reduction small"]')
+  cy.xpath(locator.discount)
     .should("have.length", 1)
     .then(function ($el1) {
       discount = $el1.text();
     });
 
-  cy.xpath('//*[@class="old-price"]')
+  cy.xpath(locator.oldPrice)
     .should("have.length", 1)
     .then(function ($el2) {
       mrp = $el2.text();
@@ -66,25 +65,20 @@ Cypress.Commands.add("travelToCart", () => {
       );
     });
 
-  cy.get("#total_price").then((total) => {
+  cy.get(locator.totalPrice).then((total) => {
     cy.log("total price => " + total.text());
   });
 });
 
 Cypress.Commands.add("checkLargeCheckBox", () => {
-  cy.xpath('//a[text()="T-shirts"]').last().click();
-  cy.xpath('//p[text()="Catalog"]/..//input').eq(2).check();
+  cy.xpath(locator.tShirtSectionTab).last().click();
+  cy.xpath(locator.catalogInputBoxLarge).eq(2).check();
 });
 
 Cypress.Commands.add("verifySearchItems", () => {
-  cy.get("#search_query_top")
-    .type("dress")
-    .get('[name="submit_search"]')
-    .click();
+  cy.get(locator.globalSearch).type("dress").get(locator.searchButton).click();
 
-  cy.xpath(
-    '//ul[@class="product_list grid row"]//a[@class="product-name"]'
-  ).each(($li) => {
+  cy.xpath(locator.searchedProductName).each(($li) => {
     expect($li.text()).to.have.string("Dress");
   });
 });
