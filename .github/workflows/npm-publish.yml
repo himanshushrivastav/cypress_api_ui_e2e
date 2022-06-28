@@ -1,34 +1,36 @@
-name: Send mail
-uses: dawidd6/action-send-mail@v3
- with:
-    # Required mail server address:
-    server_address: smtp.gmail.com
-    # Required mail server port:
-    server_port: 465
-    # Optional (recommended): mail server username:
-    username: himanshu.test3212@gmail.com
-    # Optional (recommended) mail server password:
-    password: pssuqzovfzxepnqa
-
-    # Required mail subject:
-    subject: Github Actions job result
-    # Required recipients' addresses:
-    to: himanshu.shrivastav@absolutdata.com
-    # Required sender full name (address can be skipped):
-    from: Luke Skywalker # <user@example.com>
-    # Optional whether this connection use TLS (default is true if server_port is 465)
-    secure: true
-    # Optional plain body:
-    body: Build job of ${{github.repository}} completed successfully!
-    # Optional HTML body read from file:
-    html_body: file://README.html
-    # Optional carbon copy recipients:
-    reply_to: luke@example.com
-    # Optional Message ID this message is replying to:
-    in_reply_to: <random-luke@example.com>
-    # Optional unsigned/invalid certificates allowance:
-    ignore_cert: true
-    # Optional converting Markdown to HTML (set content_type to text/html too):
-    convert_markdown: true
-    # Optional attachments:
-    priority: low
+name: cypress master CI
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 12.x
+          - 14.x
+          - 16.x
+  steps:
+    uses: actions/setup-node@v2
+    name: 'Use Node.js ${{ matrix.node-version }}'
+    with:
+      server_address: smtp.gmail.com
+      server_port: 465
+      username: himanshu.test3212@gmail.com
+      password: pssuqzovfzxepnqa
+      subject: Github Actions job result
+      to: himanshu.shrivastav@absolutdata.com
+      from: Luke Skywalker
+      secure: true
+      body: 'Build job of ${{github.repository}} completed successfully!'
+      html_body: 'file://README.html'
+      reply_to: luke@example.com
+      in_reply_to: <random-luke@example.com>
+      ignore_cert: true
+      convert_markdown: true
+      priority: low
