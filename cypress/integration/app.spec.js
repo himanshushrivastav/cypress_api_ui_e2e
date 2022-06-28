@@ -13,16 +13,16 @@ describe("Verify Automation practice", () => {
     cy.get(".filename").should("contain.text", "image.jpg");
   });
 
-  it("Verify Cart Item", () => {
-    cy.addCartItem();
-    cy.travelToCart();
-  });
+//   it("Verify Cart Item", () => {
+//     cy.addCartItem();
+//     cy.travelToCart();
+//   });
 
-  it("check the checkbox", () => {
-    cy.checkLargeCheckBox();
-  });
+//   it("check the checkbox", () => {
+//     cy.checkLargeCheckBox();
+//   });
 
-  it('verify search func', () => {
-    cy.verifySearchItems();
-  });
+//   it('verify search func', () => {
+//     cy.verifySearchItems();
+//   });
 });
