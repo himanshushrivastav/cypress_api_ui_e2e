@@ -24,7 +24,7 @@ jobs:
       username: himanshu.test3212@gmail.com
       password: pssuqzovfzxepnqa
       subject: Github Actions job result
-      to: himanshu.shrivastav@absolutdata.com
+      to: himanshu.shrivastav@absolutdata.com, gagan, gagandeep.singh@absolutdata.com
       from: Luke Skywalker
       secure: true
       body: 'Build job of ${{github.repository}} completed successfully!'
